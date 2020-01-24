@@ -72,6 +72,7 @@ public class DataBase {
 						electronics.subCategories.add(mobiles);
 						electronics.subCategories.add(computers);
 						electronics.subCategories.add(homeAppliances);
+						electronics.productsInCategory.add(acer);
 		
 						fashion.subCategories.add(mens);
 						fashion.subCategories.add(womens);

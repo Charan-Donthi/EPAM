@@ -1,14 +1,7 @@
-/**
- * 
- */
-
 package com.main;
 
-/**
- * @author Charan_Donthi
- *
- */
-public class Product {
+
+public class Product implements Cloneable{
 	
 	public String productName;
 	public double price=0;
@@ -22,6 +15,10 @@ public class Product {
 		if(quantity>0) return true;
 		return false;
 	}
+	
+	public Object clone() throws CloneNotSupportedException { 
+		return super.clone(); 
+	} 
 	
 
 }

@@ -1,12 +1,7 @@
-/**
- * 
- */
 package com.main;
 
-/**
- * @author Charan_Donthi
- *
- */
+import com.appInterface.UserInterface;
+
 public class WorkSpace {
 
 	/**
@@ -18,14 +13,14 @@ public class WorkSpace {
 		db.intializeCategories();
 		db.intializeProducts();
 		
-		Cart cart=new Cart();
-		cart.addProduct(db.acer);
-		cart.addProduct(db.fairAndLovely);
-		cart.addProduct(db.hat);
+		new EpamTree(db.epam);
+		EpamTree.branch.add(db.acer);
 		
-		cart.showCart();
-		cart.showCart();
+		System.out.println(EpamTree.generatePath());
 		
+		
+		UserInterface user=new UserInterface();
+		user.displayUserMenu();
 		
 	}
 
