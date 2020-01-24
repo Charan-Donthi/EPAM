@@ -101,15 +101,33 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 			System.out.println("Your cart is empty");
 			return;
 		}
+		int count=0;
 		for(Product product:yourCart.productsInCart) {
-			System.out.println(product.productName+"-------"+product.quantity+"-------"+product.price*product.quantity);
+			System.out.println(++count+"-------"+product.productName+"-------"+product.quantity+"-------"+product.price*product.quantity);
 			yourCart.totalPrice+=product.price*product.quantity;
 		}
 		System.out.println("Total Price="+yourCart.totalPrice);
+		diplayCartMenu();
+	}
+	
+	
+	public void diplayCartMenu() {
+		System.out.println("1.Remove Product\n2.Change Quantity\n3..Check Out");
+		switch(IO.readIntInput()){
+		case 1:
+			System.out.println("Select Product to remove");
+			break;
+		case 2:
+			return;
+		default:
+			System.out.println("Enter valid option");
+		}
+		System.out.println("\n1.Remove Product\n2.Change Quantity");
 		
 	}
 	
 	
+
 	
 	public boolean removeProduct(Product product) {
 		return yourCart.productsInCart.remove(product);

@@ -15,8 +15,10 @@ public class EpamTree {
 		for(Object field:branch) {
 			if(isCategory(field))
 				path+="/"+((Category)field).categoryName;
-			if(isProduct(field))
+			if(isProduct(field)) {
 				path+="/"+((Product)field).productName;
+			}
+			
 		}
 		
 		return path;
