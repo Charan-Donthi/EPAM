@@ -12,7 +12,7 @@ public class IO {
 	
 	
 	public static String readStringInput() {
-		return input.next();
+		return input.nextLine();
 	}
 	
 	

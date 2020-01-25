@@ -15,37 +15,40 @@ public class UserInterface implements Menu,UserMenu {
 		
 		AdminInterface admin=new AdminInterface();
 		
-		System.out.println("1.Admin\n2.Customer\n3.Exit");
+		System.out.println("--------------\n1.Admin\n2.Customer\n3.Exit");
+		EpamTree.requestOption();
 		
 		switch(IO.readIntInput()) {
 		case 1:
 			admin.displayAdminMenu();
+			System.out.println("Your in Initial Page");
 			break;
 		case 2:
-			
 			CustomerInterface customer=new CustomerInterface();
 			customer.displayCustomerMenu();
+			System.out.println("Your in Initial Page");
 			break;
 		case 3:
 			Exit();
 		default:
 			System.out.println("Select from given Options");	
 		}
+		displayUserMenu(); 
 	}
 	
 	
 	
 	public void checkOut(){
-		if(EpamTree.branch.size()>1) {
-			EpamTree.branch.remove(EpamTree.branch.size()-1);
-		}else {System.out.println("Your in initial Page");}
+		if(EpamTree.branch.size()==1)  return;
+		EpamTree.branch.remove(EpamTree.branch.size()-1);
 	}
 	
 	
 	
 	public void showCategories(Category category){
+		int count=0;
 		for(Category subCategory:category.subCategories) {
-			System.out.println(subCategory.categoryName);
+			System.out.println(++count+"."+subCategory.categoryName);
 		}
 	}
 	
@@ -73,4 +76,6 @@ public class UserInterface implements Menu,UserMenu {
 	public void Exit() {
 		System.exit(0);
 	}
+	
+
 }

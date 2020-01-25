@@ -10,8 +10,11 @@ import com.menu.AdminMenu;
 public class AdminInterface extends UserInterface implements AdminMenu {
 	
 	public void displayAdminMenu() {
-		Object o=EpamTree.branch.get(EpamTree.branch.size()-1);
-		System.out.println("\n1.Show Categories\n2.Show Products\n3.Select Product\n4.Add Category\n5.Add Product\n6.Update Quantity\n7.Update Price\n8.CHECK OUT\n9.Exit");
+		System.out.println("------------------\n1.Show Categories\n2.Show Products\n3.Select Product\n4.Add Category\n5.Add Product\n6.Update Quantity\n7.Update Price\n8.CHECK OUT\n9.Exit");
+		EpamTree.requestOption();
+		
+		Object o=EpamTree.getCurrentObject();
+		
 		switch(IO.readIntInput()) {
 		case 1:
 			if(EpamTree.isCategory(o)) {
@@ -54,7 +57,7 @@ public class AdminInterface extends UserInterface implements AdminMenu {
 			break;
 		case 8:
 			checkOut();
-			break;
+			return;
 		case 9:
 			Exit();
 		default:
@@ -64,6 +67,8 @@ public class AdminInterface extends UserInterface implements AdminMenu {
 		displayAdminMenu();
 	}
 
+	
+	
 	public boolean addCategory(Category category) {
 		System.out.println("Enter the category name:");
 		

@@ -19,8 +19,12 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 	
 	
 	public void displayCustomerMenu() {
-		Object o=EpamTree.branch.get(EpamTree.branch.size()-1);
-		System.out.println("\n1.Show Categories\n2.Show Products\n3.Select Product\n4.Add To Cart\n5.Show Cart\n6.Confirm Order\n7.CHECK OUT\n8.Exit");
+		
+		System.out.println("------------------\n1.Show Categories\n2.Show Products\n3.Select Product\n4.Add To Cart\n5.Show Cart\n6.Confirm Order\n7.CHECK OUT\n8.Exit");
+		EpamTree.requestOption();
+		
+		Object o=EpamTree.getCurrentObject();
+		
 		switch(IO.readIntInput()) {
 		case 1:
 			if(EpamTree.isCategory(o)) {
@@ -52,15 +56,16 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 			break;
 		case 7:
 			checkOut();
-			break;
+			return;
 		case 8:
 			Exit();
 		default:
 			System.out.println("Select Only from given Options");	
 		}
 		displayCustomerMenu();
-		
 	}
+	
+	
 	
 	
 	public void showProducts(Category category){
@@ -109,6 +114,8 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 		System.out.println("Total Price="+yourCart.totalPrice);
 		diplayCartMenu();
 	}
+	
+	
 	
 	
 	public void diplayCartMenu() {
@@ -163,11 +170,12 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 		Exit();
 	}
 	
+	
+	
 	public boolean isProductInCart(Product product) {
 		for(Product cartProduct:yourCart.productsInCart) {
 			if(cartProduct.productName.equals(product.productName)) return true;
-		}
-		
+		}	
 		return false;
 	}
 	
