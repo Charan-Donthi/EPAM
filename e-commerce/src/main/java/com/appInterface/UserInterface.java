@@ -16,7 +16,11 @@ public class UserInterface implements Menu,UserMenu {
 		AdminInterface admin=new AdminInterface();
 		
 		System.out.println("--------------\n1.Admin\n2.Customer\n3.Exit");
-		EpamTree.requestOption();
+		EpamTree.showCurrentBranch();
+		System.out.println("Select option:::::");
+		
+		
+		
 		
 		switch(IO.readIntInput()) {
 		case 1:

@@ -25,7 +25,7 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 		
 		Object o=EpamTree.getCurrentObject();
 		
-		switch(IO.readIntInput()) {
+		switch(Integer.parseInt(IO.readStringInput())) {
 		case 1:
 			if(EpamTree.isCategory(o)) {
 				showCategories((Category)o);
@@ -180,5 +180,14 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 	}
 	
 	
+	
+	public boolean isNumeric(String string) {
+		try {
+			Integer.parseInt(string);
+			return true;
+		}catch(NumberFormatException e) {
+			return false;
+		}
+	}
 	
 }

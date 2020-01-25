@@ -15,7 +15,10 @@ public class AdminInterface extends UserInterface implements AdminMenu {
 		
 		Object o=EpamTree.getCurrentObject();
 		
-		switch(IO.readIntInput()) {
+		String input=IO.readStringInput();
+		
+		if(isNumeric(input)) {
+		switch(Integer.parseInt(input)) {
 		case 1:
 			if(EpamTree.isCategory(o)) {
 				showCategories((Category)o);
@@ -63,7 +66,8 @@ public class AdminInterface extends UserInterface implements AdminMenu {
 		default:
 			System.out.println("Select Only from given Options");	
 		}
-		
+		}
+		EpamTree.traverse(input);
 		displayAdminMenu();
 	}
 
@@ -130,6 +134,16 @@ public class AdminInterface extends UserInterface implements AdminMenu {
 		
 		product.price=newPrice;
 		return product.price==newPrice;
+	}
+	
+	
+	public boolean isNumeric(String string) {
+		try {
+			Integer.parseInt(string);
+			return true;
+		}catch(NumberFormatException e) {
+			return false;
+		}
 	}
 	
 	
