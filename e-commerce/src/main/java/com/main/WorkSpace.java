@@ -1,6 +1,5 @@
 package com.main;
 
-import com.IO.IO;
 import com.appInterface.UserInterface;
 
 public class WorkSpace {
@@ -13,8 +12,7 @@ public class WorkSpace {
 		
 		new EpamTree(db.epam);
 		
-		EpamTree.showCurrentBranch();
-		
+		EpamTree.showCurrentBranch(EpamTree.generatePath());
 		UserInterface user=new UserInterface();
 		user.displayUserMenu();
 		

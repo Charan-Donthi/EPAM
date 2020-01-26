@@ -13,46 +13,48 @@ public class UserInterface implements Menu,UserMenu {
 	
 	public void displayUserMenu() {
 		
-		AdminInterface admin=new AdminInterface();
+		
 		
 		System.out.println("--------------\n1.Admin\n2.Customer\n3.Exit");
-		EpamTree.showCurrentBranch();
-		System.out.println("Select option:::::");
-		
-		
-		
+		EpamTree.showCurrentBranch(EpamTree.generatePath());
+		System.out.print("Select option:::::");
 		
 		switch(IO.readIntInput()) {
 		case 1:
+			AdminInterface admin=new AdminInterface();
+			EpamTree.user=admin;
 			admin.displayAdminMenu();
-			System.out.println("Your in Initial Page");
 			break;
 		case 2:
 			CustomerInterface customer=new CustomerInterface();
+			EpamTree.user=customer;
 			customer.displayCustomerMenu();
-			System.out.println("Your in Initial Page");
 			break;
 		case 3:
 			Exit();
 		default:
 			System.out.println("Select from given Options");	
 		}
-		displayUserMenu(); 
+		
+		displayUserMenu();
 	}
 	
 	
 	
 	public void checkOut(){
-		if(EpamTree.branch.size()==1)  return;
-		EpamTree.branch.remove(EpamTree.branch.size()-1);
+		if(!(EpamTree.branch.size()==1)) {
+		EpamTree.branch.remove(EpamTree.branch.size()-1);	}
+		else{
+		EpamTree.checkOutStatus=true;
+		}
 	}
 	
 	
 	
 	public void showCategories(Category category){
-		int count=0;
+		if(category.subCategories.isEmpty()) {System.out.println("No categories under "+ category.categoryName); return;}
 		for(Category subCategory:category.subCategories) {
-			System.out.println(++count+"."+subCategory.categoryName);
+			System.out.println(subCategory.categoryName);
 		}
 	}
 	
@@ -65,7 +67,7 @@ public class UserInterface implements Menu,UserMenu {
 		}
 		
 		for(Product product:category.productsInCategory) {
-			System.out.println(product.productName);
+			System.out.println(product.productName+" ----Price:"+product.price);
 		}
 	}
 	

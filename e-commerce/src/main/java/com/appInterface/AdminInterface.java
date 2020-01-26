@@ -9,66 +9,75 @@ import com.menu.AdminMenu;
 
 public class AdminInterface extends UserInterface implements AdminMenu {
 	
+	
 	public void displayAdminMenu() {
-		System.out.println("------------------\n1.Show Categories\n2.Show Products\n3.Select Product\n4.Add Category\n5.Add Product\n6.Update Quantity\n7.Update Price\n8.CHECK OUT\n9.Exit");
+		EpamTree.checkOutStatus=false;
+		FieldMenu.currentFieldMenu();
+		if(EpamTree.checkOutStatus)	return;
+		displayAdminMenu();
+		
+	}
+	
+	
+	
+	public void categoryMenu(Object o) {
+		System.out.println("------------------\n1.Show Categories\n2.Show Products\n3.Add Category\n4.Add Product\n5.CHECK OUT\n6.Exit");
+		
 		EpamTree.requestOption();
-		
-		Object o=EpamTree.getCurrentObject();
-		
 		String input=IO.readStringInput();
 		
 		if(isNumeric(input)) {
 		switch(Integer.parseInt(input)) {
 		case 1:
-			if(EpamTree.isCategory(o)) {
-				showCategories((Category)o);
-			}else {System.out.println("Product cannot have categories");}
+			showCategories((Category)o);
 			break;
 		case 2:
-			if(EpamTree.isCategory(o)) {
-				showProducts((Category)o);
-				}else {System.out.println("Product cannot have products");}
+			showProducts((Category)o);
 			break;
 		case 3:
-			if(EpamTree.isProduct(o)) {
-				selectProduct((Product)o);
-			}else {System.out.println("Cannot select category");}
+			if(addCategory((Category)o)) {System.out.println("Category Added Successfully under "+((Category)o).categoryName);}
+			else {System.out.println("Unable to add category");}
 			break;
 		case 4:
-			if(EpamTree.isCategory(o)) {
-				if(addCategory((Category)o)) {System.out.println("Category Added Successfully under "+((Category)o).categoryName);}
-				else {System.out.println("Unable to add category");}
-			}else {System.out.println("Cannot Add Category under Product");}
+			if(addProduct((Category)o)) {System.out.println("Product Added Successfully under "+((Category)o).categoryName);}
+			else {System.out.println("Unable to add Product");}
 			break;
 		case 5:
-			if(EpamTree.isCategory(o)) {
-				if(addProduct((Category)o)) {System.out.println("Product Added Successfully under "+((Category)o).categoryName);}
-				else {System.out.println("Unable to add Product");}
-			}else {System.out.println("Cannot Add Product under Product");}
+			checkOut();
 			break;
 		case 6:
-			if(EpamTree.isProduct(o)) {
-				if(updateQuantity((Product)o)) {System.out.println("Quantity updated Successfully for "+((Product)o).productName);}
-				else {System.out.println("Unable to update Quantity");}
-			}else {System.out.println("Choose Product Instead Category");}
-			break;
-		case 7:
-			if(EpamTree.isProduct(o)) {
-				if(updatePrice((Product)o)) {System.out.println("Price Updated Successfully for "+((Product)o).productName);}
-				else {System.out.println("Unable to update Price");}
-			}else {System.out.println("Choose Product Instead Category");}
-			break;
-		case 8:
-			checkOut();
-			return;
-		case 9:
 			Exit();
 		default:
 			System.out.println("Select Only from given Options");	
 		}
-		}
-		EpamTree.traverse(input);
-		displayAdminMenu();
+		}else {EpamTree.traverse(input);}
+		
+		
+	}
+	
+	public void productMenu(Object o) {
+		System.out.println("------------------\n1.Update Quantity\n2.Update Price\n3.CHECK OUT\n4.Exit");
+		EpamTree.requestOption();
+		String input=IO.readStringInput();
+		if(isNumeric(input)) {	
+			switch(Integer.parseInt(input)) {
+			case 1:
+				if(updateQuantity((Product)o)) {System.out.println("Quantity updated Successfully for "+((Product)o).productName);}
+				else {System.out.println("Unable to update Quantity");}
+				break;
+			case 2:
+				if(updatePrice((Product)o)) {System.out.println("Price Updated Successfully for "+((Product)o).productName);}
+				else {System.out.println("Unable to update Price");}
+				break;
+			case 3:
+				checkOut();
+				break;
+			case 4:
+				Exit();
+			default:
+				System.out.println("Select Only from given Options");
+			}
+		}else {EpamTree.traverse(input);}
 	}
 
 	
