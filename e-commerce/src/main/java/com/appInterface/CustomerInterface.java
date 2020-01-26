@@ -42,6 +42,7 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 			break;
 		case 3:
 			showCart();
+			cartMenu();
 			break;
 		case 4:
 			confirmOrder();
@@ -123,24 +124,24 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 			return;
 		}
 		int count=0;
+		yourCart.totalPrice=0;
 		for(Product product:yourCart.productsInCart) {
 			System.out.println(++count+"-------"+product.productName+"-------"+product.quantity+"-------"+product.price*product.quantity);
 			yourCart.totalPrice+=product.price*product.quantity;
 		}
 		System.out.println("Total Price="+yourCart.totalPrice);
 		EpamTree.showCurrentBranch("Cart");
-		cartMenu();
 	}
 	
 	
 	
 	
 	public void cartMenu() {
-		System.out.println("1.Remove Product\n2.Change Quantity\n3.Check Out");
+		System.out.println("1.Remove Product\n2.Change Quantity\n3.Confirm Order\n4.Check Out");
 		System.out.print("Select Option::::");
 		switch(IO.readIntInput()){
 		case 1:
-			System.out.println("Select Product to remove::::");
+			System.out.print("Select Product to remove::::");
 			try {
 			if(removeProduct((Product)yourCart.productsInCart.toArray()[IO.readIntInput()-1])) {
 				System.out.println("Product removed from cart");}
@@ -149,7 +150,7 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 			}
 			break;
 		case 2:
-			System.out.println("Select Product to Change Quantity::::");
+			System.out.print("Select Product to Change Quantity::::");
 			try {
 				if(changeQuantity((Product)yourCart.productsInCart.toArray()[IO.readIntInput()-1])) {
 					System.out.println("Quantity changed");}
@@ -157,6 +158,12 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 					System.out.println(e.toString());
 				}
 			return;
+		case 3:
+			confirmOrder();
+			break;
+		case 4:
+			checkOut();
+			break;
 		default:
 			System.out.println("Enter valid option");
 		}
@@ -192,12 +199,12 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 	}
 	
 	
-	
 	public void confirmOrder() {
+		deductQuantityFromDataBase();
 		showCart();
 		System.out.println("---------------Your Order-----------------");
 		System.out.println("---Is on its way make sure to collect-----");
-		Exit();
+		EpamTree.checkOutStatus=true;
 	}
 	
 	
@@ -207,6 +214,18 @@ public class CustomerInterface extends UserInterface implements CustomerMenu {
 			if(cartProduct.productName.equals(product.productName)) return true;
 		}	
 		return false;
+	}
+	
+	
+	public void deductQuantityFromDataBase() {
+		for(Product cartProduct:yourCart.productsInCart) {
+			Product originalProduct=EpamTree.allProducts.get(cartProduct.productName);
+			if(originalProduct.quantity<cartProduct.quantity) {
+				System.out.println("Available quantity for "+cartProduct.productName+" is "+originalProduct.quantity);
+				cartProduct.quantity=originalProduct.quantity;
+			}
+			originalProduct.quantity-=cartProduct.quantity;
+		}
 	}
 	
 	

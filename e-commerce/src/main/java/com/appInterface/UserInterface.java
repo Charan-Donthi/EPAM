@@ -67,7 +67,7 @@ public class UserInterface implements Menu,UserMenu {
 		}
 		
 		for(Product product:category.productsInCategory) {
-			System.out.println(product.productName+" ----Price:"+product.price);
+			System.out.println(product.productName+" ----Price:"+product.price+" ----Quantity:"+product.quantity);
 		}
 	}
 	

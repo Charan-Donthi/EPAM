@@ -9,6 +9,14 @@ public class Product implements Cloneable{
 	
 	public Product(String productName) {
 		this.productName=productName;
+		EpamTree.allProducts.put(productName, this);
+	}
+	
+	public Product(String productName,double price,int quantity) {
+		this.productName=productName;
+		this.price=price;
+		this.quantity=quantity;
+		EpamTree.allProducts.put(productName, this);
 	}
 	
 	public boolean isAvailable() {

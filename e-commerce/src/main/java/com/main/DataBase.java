@@ -20,41 +20,41 @@ public class DataBase {
 				Category beautyProducts=new Category("Beauty Products");
 				Category householdProducts=new Category("Household Products");
 				
-				Product onePlus=new Product("ONEPlus");
-				Product realMe=new Product("RealMe");
-				Product xiaomi=new Product("Xiaomi");
+				Product onePlus=new Product("ONEPlus",30,2);
+				Product realMe=new Product("RealMe",20,3);
+				Product xiaomi=new Product("Xiaomi",40,1);
 				
-				Product dell=new Product("Dell");
-				Product lenovo=new Product("Lenovo");
-				Product acer=new Product("Acer");
+				Product dell=new Product("Dell",100,2);
+				Product lenovo=new Product("Lenovo",200,1);
+				Product acer=new Product("Acer",300,3);
 				
-				Product airConditioner=new Product("Air Conditioner");
-				Product teleVision=new Product("TeleVision");
-				Product washingMachine=new Product("Washing Machine");
+				Product airConditioner=new Product("Air Conditioner",200,8);
+				Product teleVision=new Product("TeleVision",400,2);
+				Product washingMachine=new Product("Washing Machine",100,3);
 				
-				Product mensPant=new Product("Mens pant");
-				Product mensShirt=new Product("Mens Shirt");
-				Product mensShoes=new Product("Mens Shoes");
+				Product mensPant=new Product("Mens pant",300,1);
+				Product mensShirt=new Product("Mens Shirt",500,3);
+				Product mensShoes=new Product("Mens Shoes",100,3);
 				
-				Product womensPant=new Product("Womens pant");
-				Product womensShirt=new Product("Womens Shirt");
-				Product womensShoes=new Product("Womens Shoes");
+				Product womensPant=new Product("Womens pant",2,10);
+				Product womensShirt=new Product("Womens Shirt",1,12);
+				Product womensShoes=new Product("Womens Shoes",5,7);
 				
-				Product hat=new Product("hat");
-				Product kidClothesSet=new Product("kid clothes set");
-				Product lightShoes=new Product("light shoes");
+				Product hat=new Product("hat",12,8);
+				Product kidClothesSet=new Product("kid clothes set",50,2);
+				Product lightShoes=new Product("light shoes",11,4);
 				
-				Product lotion=new Product("Lotion");
-				Product sunScreen=new Product("SunScreen");
-				Product faceWash=new Product("FaceWash");
+				Product lotion=new Product("Lotion",3,3);
+				Product sunScreen=new Product("SunScreen",2,3);
+				Product faceWash=new Product("FaceWash",4,2);
 				
-				Product makeupSet=new Product("MakeupSet");
-				Product powder=new Product("Powder");
-				Product fairAndLovely=new Product("Fair&Lovely");
+				Product makeupSet=new Product("MakeupSet",1,4);
+				Product powder=new Product("Powder",5,10);
+				Product fairAndLovely=new Product("Fair&Lovely",3,5);
 				
-				Product soap=new Product("Soap");
-				Product toothpaste=new Product("Toothpaste");
-				Product utensil=new Product("Utensil");
+				Product soap=new Product("Soap",11,5);
+				Product toothpaste=new Product("Toothpaste",5,10);
+				Product utensil=new Product("Utensil",3,5);
 				
 				public void intializeCategories() {
 		

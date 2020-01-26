@@ -1,11 +1,17 @@
 package com.main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+
+
 
 public class EpamTree {
 	public static Object user=null;
 	public static List<Object> branch=new ArrayList<Object>();
+	public static Map<String,Product> allProducts=new HashMap<String,Product>();
 	public static boolean checkOutStatus=false;
 	
 	
@@ -56,7 +62,7 @@ public class EpamTree {
 	}
 	
 	public static Object getCurrentObject() {
-		return EpamTree.branch.get(EpamTree.branch.size()-1);
+		return EpamTree.branch.toArray()[EpamTree.branch.size()-1];
 	}
 	
 	
