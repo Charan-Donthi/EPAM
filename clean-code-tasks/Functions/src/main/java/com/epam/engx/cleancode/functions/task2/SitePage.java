@@ -27,7 +27,7 @@ public class SitePage {
     }
 
     private String getAttributes() {
-        return "&siteGrp=" + getSiteGroup() + "&userGrp=" + getUserGroup();
+        return "&siteGrp=" + siteGroup + "&userGrp=" + userGroup;
     }
 
     public String getUserGroup() {

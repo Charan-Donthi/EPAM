@@ -14,24 +14,45 @@ public class RegisterAccountAction {
     private PasswordChecker passwordChecker;
     private AccountManager accountManager;
 
-    public void register(Account account) {
-        if (account.getName().length() <= 5){
+    public void register(Account account) throws WrongAccountNameException, WrongPasswordException{
+    	
+    	validateAccountName(account.getName());
+        validatePassword(account.getPassword());
+        
+
+        account.setCreatedDate(new Date());
+        
+        account.setAddresses(addAddresses(account));
+        accountManager.createNewAccount(account);
+    }
+    
+    
+    
+    public void validateAccountName(String accountName) throws WrongAccountNameException{
+    	if (accountName.length() <= 5){
             throw new WrongAccountNameException();
         }
-        String password = account.getPassword();
-        if (password.length() <= 8) {
+    }
+    
+    
+    
+    public void validatePassword(String password) throws WrongPasswordException{
+    	if (password.length() <= 8) {
             if (passwordChecker.validate(password) != OK) {
                 throw new WrongPasswordException();
             }
         }
-
-        account.setCreatedDate(new Date());
-        List<Address> addresses = new ArrayList<Address>();
+    }
+    
+    
+    
+    public List<Address> addAddresses(Account account){
+    	List<Address> addresses = new ArrayList<Address>();
         addresses.add(account.getHomeAddress());
         addresses.add(account.getWorkAddress());
         addresses.add(account.getAdditionalAddress());
-        account.setAddresses(addresses);
-        accountManager.createNewAccount(account);
+        
+        return addresses;
     }
 
 

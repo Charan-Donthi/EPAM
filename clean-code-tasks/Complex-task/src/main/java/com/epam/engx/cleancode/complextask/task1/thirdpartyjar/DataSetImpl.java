@@ -10,7 +10,7 @@ public class DataSetImpl implements DataSet {
         private Object value;
 
         public Data(String columnName, Object value){
-            this.columnName = columnName;
+            this.columnName = columnName;  
             this.value = value;
         }
 

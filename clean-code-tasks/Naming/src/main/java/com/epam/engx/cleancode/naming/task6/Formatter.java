@@ -8,11 +8,11 @@ public class Formatter {
     private static final String UNDERSCORE = " _ ";
 
     public static void main(String[] args) {
-        System.out.println(formatKyeValue("enable", "true"));
-        System.out.println(formatKyeValue("name", "Bob"));
+        System.out.println(format("enable", "true"));
+        System.out.println(format("name", "Bob"));
     }
 
-    private static String formatKyeValue(String key, String value) {
+    private static String format(String key, String value) {
         String content = key + UNDERSCORE + value;
         String minuses = repeat(MINUS, content.length());
         return PLUS +  minuses + PLUS + "\n"
