@@ -1,3 +1,3 @@
 # RD-training
 
-Training tasks
+Working on training tasks solutions
