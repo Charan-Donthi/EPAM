@@ -1,10 +1,11 @@
-package com.IO;
+package com.InputOutput;
 
 import java.util.Scanner;
 
 
 
-public class IO {
+
+public class IO{
 	
 	static Scanner input=new Scanner(System.in);
 	
@@ -17,12 +18,14 @@ public class IO {
 	
 	public static String readStringInput() {
 		return input.nextLine();
-
 	}
 	
 	
 	public static Double readDoubleInput() {
-		return input.nextDouble();
+		
+		double n=input.nextDouble();
+		return n;
+		
 	}
 
 }

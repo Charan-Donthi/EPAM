@@ -5,24 +5,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.InputOutput.IO;
+
 
 
 
 public class EpamTree {
-	public static Object user=null;
-	public static List<Object> branch=new ArrayList<Object>();
-	public static Map<String,Product> allProducts=new HashMap<String,Product>();
+	public static String user;
+	public static List<Object> branch=new ArrayList<>();
+	public static Map<String,Product> allProducts=new HashMap<>();
 	public static boolean checkOutStatus=false;
+	public static Cart yourCart;
 	
 	
 	
-	public EpamTree(Category initialCategory) {
+	EpamTree(Category initialCategory) {
 		branch.add(initialCategory);
 	}
 	
 	
-	public static void showCurrentBranch(String path) {
+	public static void displayCurrentBranch(String path) {
 		int pageWidth=100;
+		System.out.print("******");
+		System.out.print("User:"+user);
 		for(int i=0;i<(pageWidth-path.length())/2;i++)	System.out.print("*");
 		System.out.print(path);
 		for(int i=0;i<(pageWidth-path.length())/2;i++)	System.out.print("*");
@@ -32,15 +37,15 @@ public class EpamTree {
 	
 	
 	public static String generatePath() {
-		String path="";
+		StringBuilder path=new StringBuilder("");
 		for(Object field:branch) {
 			if(isCategory(field))
-				path+="/"+((Category)field).categoryName;
+				path.append("/"+((Category)field).categoryName);
 			if(isProduct(field)) {
-				path+="/"+((Product)field).productName;
+				path.append("/"+((Product)field).productName);
 			}	
 		}
-		return path;
+		return path.toString();
 	}
 	
 	
@@ -56,13 +61,14 @@ public class EpamTree {
 	}
 	
 	
-	public static void requestOption(){
-		EpamTree.showCurrentBranch(generatePath());
-		System.out.print("Traverse Or Select option::::");
+	public static String requestOption(){
+		displayCurrentBranch(generatePath());
+		System.out.print("Type name/path to go there Or Select option::::");
+		return IO.readStringInput();
 	}
 	
 	public static Object getCurrentObject() {
-		return EpamTree.branch.toArray()[EpamTree.branch.size()-1];
+		return branch.toArray()[branch.size()-1];
 	}
 	
 	
@@ -80,21 +86,25 @@ public class EpamTree {
 	
 	public static boolean traverseInBranch(String input) {
 		
-		if(EpamTree.isCategory(EpamTree.getCurrentObject())) { 
-			for(Category category:((Category)EpamTree.getCurrentObject()).subCategories) {
+		
+		if(isCategory(getCurrentObject())) { 
+			for(Category category:((Category)getCurrentObject()).getSubCategories()) {
 				if(category.categoryName.equalsIgnoreCase(input)) {
-					EpamTree.branch.add(category);
+					branch.add(category);
 					return true;
 				}
 			}
 			
-			for(Product product:((Category)EpamTree.getCurrentObject()).productsInCategory) {
+			for(Product product:((Category)getCurrentObject()).getProducts()) {
 				if(product.productName.equalsIgnoreCase(input)) {
-					EpamTree.branch.add(product);
+					branch.add(product);
 					return true;
 				}
 			}
 		}
+		
+
+		
 		return false;
 		
 	}

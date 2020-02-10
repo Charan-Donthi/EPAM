@@ -1,7 +1,7 @@
 package com.main;
 
 
-public class Product implements Cloneable{
+public class Product{
 	
 	public String productName;
 	public double price=0;
@@ -19,13 +19,11 @@ public class Product implements Cloneable{
 		EpamTree.allProducts.put(productName, this);
 	}
 	
-	public boolean isAvailable() {
-		if(quantity>0) return true;
-		return false;
-	}
-	
-	public Object clone() throws CloneNotSupportedException { 
-		return super.clone(); 
+
+	public Product(Product product) {
+		this.productName=product.productName;
+		this.price=product.price;
+		this.quantity=1;
 	} 
 	
 

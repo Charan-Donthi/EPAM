@@ -1,7 +1,7 @@
 package com.menu;
 
 import com.main.Category;
-import com.main.Product;;
+import com.main.Product;
 
 public interface AdminMenu extends UserMenu {
 	public boolean addCategory(Category category);

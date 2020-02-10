@@ -1,12 +1,18 @@
-package com.main;
+package com.dataBase;
+
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+
+import com.main.Category;
+import com.main.Product;
 
 
 public class DataBase {
 	
-		Category epam=new Category("Epam");
+		public Category epam=new Category("Epam");
 		
 			Category electronics=new Category("Electronics");
-				Category mobiles=new Category("Mobiles");
+				public Category mobiles=new Category("Mobiles");
 				Category computers=new Category("Computers");
 				Category homeAppliances=new Category("Home Appliances");
 			
@@ -20,7 +26,7 @@ public class DataBase {
 				Category beautyProducts=new Category("Beauty Products");
 				Category householdProducts=new Category("Household Products");
 				
-				Product onePlus=new Product("ONEPlus",30,2);
+			    Product onePlus=new Product("ONEPlus",30,2);
 				Product realMe=new Product("RealMe",20,3);
 				Product xiaomi=new Product("Xiaomi",40,1);
 				
@@ -56,66 +62,34 @@ public class DataBase {
 				Product toothpaste=new Product("Toothpaste",5,10);
 				Product utensil=new Product("Utensil",3,5);
 				
+				
+				
+				
 				public void intializeCategories() {
-		
-		
-						epam.subCategories.add(electronics);
-						epam.subCategories.add(fashion);
-						epam.subCategories.add(dailyEssentials);
-		
-						electronics.subCategories.add(mobiles);
-						electronics.subCategories.add(computers);
-						electronics.subCategories.add(homeAppliances);
-		
-						fashion.subCategories.add(mens);
-						fashion.subCategories.add(womens);
-						fashion.subCategories.add(kids);
-		
-						dailyEssentials.subCategories.add(healthProducts);
-						dailyEssentials.subCategories.add(beautyProducts);
-						dailyEssentials.subCategories.add(householdProducts);
-		
+					
+					epam.addSubCategories(new LinkedHashSet<Category>(Arrays.asList(electronics,fashion,dailyEssentials)));
+					electronics.addSubCategories(new LinkedHashSet<Category>(Arrays.asList(mobiles,computers,homeAppliances)));
+					fashion.addSubCategories(new LinkedHashSet<Category>(Arrays.asList(mens,womens,kids)));
+					dailyEssentials.addSubCategories(new LinkedHashSet<Category>(Arrays.asList(healthProducts,beautyProducts,householdProducts)));
 
 				}
 	
+				
+				
 	
 				public void intializeProducts() {
 					
-					mobiles.productsInCategory.add(onePlus);
-					mobiles.productsInCategory.add(realMe);
-					mobiles.productsInCategory.add(xiaomi);
+					mobiles.addProducts(new LinkedHashSet<Product>(Arrays.asList(onePlus,realMe,xiaomi)));
+					computers.addProducts(new LinkedHashSet<Product>(Arrays.asList(dell,lenovo,acer)));
+					homeAppliances.addProducts(new LinkedHashSet<Product>(Arrays.asList(airConditioner,teleVision,washingMachine)));
 					
-					computers.productsInCategory.add(dell);
-					computers.productsInCategory.add(lenovo);
-					computers.productsInCategory.add(acer);
+					mens.addProducts(new LinkedHashSet<Product>(Arrays.asList(mensPant,mensShirt,mensShoes)));
+					womens.addProducts(new LinkedHashSet<Product>(Arrays.asList(womensPant,womensShirt,womensShoes)));
+					kids.addProducts(new LinkedHashSet<Product>(Arrays.asList(hat,kidClothesSet,lightShoes)));
 					
-					homeAppliances.productsInCategory.add(airConditioner);
-					homeAppliances.productsInCategory.add(teleVision);
-					homeAppliances.productsInCategory.add(washingMachine);
-					
-					mens.productsInCategory.add(mensPant);
-					mens.productsInCategory.add(mensShirt);
-					mens.productsInCategory.add(mensShoes);
-					
-					womens.productsInCategory.add(womensPant);
-					womens.productsInCategory.add(womensShirt);
-					womens.productsInCategory.add(womensShoes);
-					
-					kids.productsInCategory.add(hat);
-					kids.productsInCategory.add(kidClothesSet);
-					kids.productsInCategory.add(lightShoes);
-					
-					healthProducts.productsInCategory.add(lotion);
-					healthProducts.productsInCategory.add(sunScreen);
-					healthProducts.productsInCategory.add(faceWash);
-					
-					beautyProducts.productsInCategory.add(makeupSet);
-					beautyProducts.productsInCategory.add(powder);
-					beautyProducts.productsInCategory.add(fairAndLovely);
-					
-					householdProducts.productsInCategory.add(soap);
-					householdProducts.productsInCategory.add(toothpaste);
-					householdProducts.productsInCategory.add(utensil);
+					healthProducts.addProducts(new LinkedHashSet<Product>(Arrays.asList(lotion,sunScreen,faceWash)));
+					beautyProducts.addProducts(new LinkedHashSet<Product>(Arrays.asList(makeupSet,powder,fairAndLovely)));
+					householdProducts.addProducts(new LinkedHashSet<Product>(Arrays.asList(soap,toothpaste,utensil)));
 		
 
 				}

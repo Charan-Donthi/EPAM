@@ -1,8 +1,11 @@
 package com.main;
 
+import com.dataBase.*;
+
 import com.appInterface.UserInterface;
 
-public class E_commerce {
+
+public class EpamE_Commerce {
 
 	public static void main(String[] args) {
 		
@@ -12,9 +15,11 @@ public class E_commerce {
 		
 		new EpamTree(db.epam);
 		
-		EpamTree.showCurrentBranch(EpamTree.generatePath());
+		EpamTree.displayCurrentBranch(EpamTree.generatePath());
+		
+		
 		UserInterface user=new UserInterface();
-		user.displayUserMenu();
+		user.displayMenu();
 		
 	}
 

@@ -1,42 +1,51 @@
 package com.appInterface;
 
-import com.IO.*;
-import com.main.Category;
+import java.util.InputMismatchException;
+
+import com.InputOutput.*;
 import com.main.EpamTree;
-import com.main.Product;
-import com.menu.Menu;
-import com.menu.UserMenu;
 
 
-public class UserInterface implements Menu,UserMenu {
+
+public class UserInterface  {
+	
+	public String user="user";
 	
 	
-	public void displayUserMenu() {
-		
+	public void displayMenu() {
 		
 		
 		System.out.println("--------------\n1.Admin\n2.Customer\n3.Exit");
-		EpamTree.showCurrentBranch(EpamTree.generatePath());
+		EpamTree.displayCurrentBranch(EpamTree.generatePath());
 		System.out.print("Select option:::::");
 		
+		try {
 		switch(IO.readIntInput()) {
 		case 1:
-			AdminInterface admin=new AdminInterface();
-			EpamTree.user=admin;
-			admin.displayAdminMenu();
+			UserInterface admin=new AdminInterface("admin");
+			EpamTree.user=admin.user;
+			admin.displayMenu();
+			EpamTree.user=user;
 			break;
 		case 2:
-			CustomerInterface customer=new CustomerInterface();
-			EpamTree.user=customer;
-			customer.displayCustomerMenu();
+			UserInterface customer=new CustomerInterface("customer");
+			EpamTree.user=customer.user;
+			customer.displayMenu();
+			EpamTree.user=user;
 			break;
 		case 3:
-			Exit();
+			return;
 		default:
 			System.out.println("Select from given Options");	
+		}}catch(InputMismatchException e) {
+			System.out.println("Invalid input");
+			return;
+		}catch(Exception e) {
+			System.out.println(e.getLocalizedMessage());
+			return;
 		}
 		
-		displayUserMenu();
+		displayMenu();
 	}
 	
 	
@@ -49,39 +58,11 @@ public class UserInterface implements Menu,UserMenu {
 		}
 	}
 	
-	
-	
-	public void showCategories(Category category){
-		if(category.subCategories.isEmpty()) {System.out.println("No categories under "+ category.categoryName); return;}
-		for(Category subCategory:category.subCategories) {
-			System.out.println(subCategory.categoryName);
-		}
-	}
-	
-	
-	
-	public void showProducts(Category category){
-		if(category.productsInCategory.size()<=0) {
-			System.out.println("Their aren't any Products in this category");
-			return;
-		}
-		
-		for(Product product:category.productsInCategory) {
-			System.out.println(product.productName+" ----Price:"+product.price+" ----Quantity:"+product.quantity);
-		}
-	}
-	
-	
-	
-	public void selectProduct(Product product) {
-		System.out.println(product.productName);
-	}
-	
-	
-	
+
 	public void Exit() {
 		System.exit(0);
 	}
 	
+
 
 }
