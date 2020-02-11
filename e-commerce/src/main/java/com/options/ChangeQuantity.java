@@ -1,10 +1,9 @@
 package com.options;
 
-import Console.ConsoleFeatures.*;
 
 import java.util.InputMismatchException;
 
-import com.InputOutput.IO;
+import com.inputoutput.IO;
 import com.main.Cart;
 import com.main.EpamTree;
 import com.main.Product;
@@ -12,16 +11,16 @@ import com.main.Product;
 
 
 public class ChangeQuantity extends Option{
-	
+		
 	public ChangeQuantity(String newOptionName){
 		setOptionName(newOptionName);
 	}
 	
 	
-	
+	@Override
 	public void function() {
-		Cart yourCart=EpamTree.yourCart;
-		Console.print("Select Product to Change Quantity::::");
+		Cart yourCart=EpamTree.getYourCart();
+		logger.info("Select Product to Change Quantity::::");
 		int index=IO.readIntInput();
 		
 		try {
@@ -29,13 +28,13 @@ public class ChangeQuantity extends Option{
 		Product product=(Product)yourCart.getProductsInCart().toArray()[index-1];
 		
 		if(changeQuantity(product)) {
-			Console.println("Quantity changed successfully");
+			logger.info("Quantity changed successfully");
 		}else {
-			Console.println("Unable to change quantity");
+			logger.warn("Unable to change quantity");
 		}
 		
 		}catch(IndexOutOfBoundsException e) {
-			Console.println("Select only from the given numbers");
+			logger.error("Select only from the given numbers");
 		}
 	}
 	
@@ -44,19 +43,19 @@ public class ChangeQuantity extends Option{
 	private boolean changeQuantity(Product product) {
 		
 		try {
-		Console.println("Enter the Quantity::");
+			logger.info("Enter the Quantity::");
 		
 		int newQuantity=IO.readIntInput();
 		
-		if(newQuantity<0 && newQuantity>product.quantity) {
-			Console.println("Invalid Quantity");
+		if(newQuantity<0 && newQuantity>product.getQuantity()) {
+			logger.warn("Invalid Quantity");
 			return false;
 		}else {
-			product.quantity=newQuantity;
+			product.setQuantity(newQuantity);
 			return true;
 		}
 		}catch(InputMismatchException e) {
-			Console.println("Invalid input");
+			logger.error("Invalid input");
 		}
 	return false;
 }

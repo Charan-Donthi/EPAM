@@ -1,4 +1,4 @@
-package com.appInterface;
+package com.appinterface;
 
 import com.main.EpamTree;
 import com.main.Product;
@@ -16,16 +16,16 @@ public class AdminInterface extends UserInterface {
 	ProductOptionsForAdmin productOptions=new ProductOptionsForAdmin();
 	
 	
-	
+	@Override
 	public void displayMenu() {
 		
-		EpamTree.checkOutStatus=false;
+		EpamTree.setCheckOutStatus(false);
 		
 		if(EpamTree.getCurrentObject() instanceof Category) {categoryMenu();}
 		
 		if(EpamTree.getCurrentObject() instanceof Product) {productMenu();}
 		
-		if(EpamTree.checkOutStatus)	return;
+		if(EpamTree.isCheckOutStatus())	return;
 		
 		displayMenu();
 		
@@ -62,7 +62,7 @@ public class AdminInterface extends UserInterface {
 	public boolean isNumeric(String string) 
 	{
 		try {
-			Integer.parseInt(string);
+			Integer.parseInt(string.trim());
 			return true;
 		}catch(NumberFormatException e) {
 			return false;

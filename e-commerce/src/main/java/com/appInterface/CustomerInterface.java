@@ -1,4 +1,4 @@
-package com.appInterface;
+package com.appinterface;
 
 import com.main.Cart;
 import com.main.Category;
@@ -19,14 +19,14 @@ public class CustomerInterface extends UserInterface {
 	public CustomerInterface(String user) {
 		this.user=user;
 		yourCart=new Cart();
-		EpamTree.yourCart=yourCart;
+		EpamTree.setYourCart(yourCart);
 	}
 		
 	
-	
+	@Override
 	public void displayMenu() {
 		
-		EpamTree.checkOutStatus=false;
+		EpamTree.setCheckOutStatus(false);
 		
 		if(EpamTree.getCurrentObject() instanceof Category) {categoryMenu();}
 		
@@ -34,7 +34,7 @@ public class CustomerInterface extends UserInterface {
 		
 		if(EpamTree.getCurrentObject() instanceof Cart) {cartMenu();}
 		
-		if(EpamTree.checkOutStatus)	return;
+		if(EpamTree.isCheckOutStatus())	return;
 		
 		displayMenu();
 	}
@@ -82,7 +82,7 @@ public class CustomerInterface extends UserInterface {
 	
 	public boolean isNumeric(String string) {
 		try {
-			Integer.parseInt(string);
+			Integer.parseInt(string.trim());
 			return true;
 		}catch(NumberFormatException e) {
 			return false;

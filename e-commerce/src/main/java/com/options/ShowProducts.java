@@ -1,6 +1,7 @@
 package com.options;
 
-import Console.ConsoleFeatures.*;
+
+
 import com.main.Category;
 import com.main.EpamTree;
 import com.main.Product;
@@ -9,23 +10,25 @@ import com.main.Product;
 
 public class ShowProducts extends Option 
 {
+	
+	
 	public ShowProducts(String newOptionName){
 		setOptionName(newOptionName);
 	}
 	
-	
+	@Override
 	public void function() 
 	{
 		Category category=(Category)EpamTree.getCurrentObject();
-		if(category.getProducts().size()<=0) 
+		if(category.getProducts().isEmpty()) 
 		{
-			Console.println("Their aren't any Products in this category");
+			logger.warn("Their aren't any Products in this category");
 			return;
 		}
 		
 		for(Product product:category.getProducts()) 
 		{
-			Console.println(product.productName+" ----Price:"+product.price+" ----Quantity:"+product.quantity);
+			logger.info("{} ----Price:{} ----Quantity:{}",product.getProductName(),product.getPrice(),product.getQuantity());
 		}
 	}
 

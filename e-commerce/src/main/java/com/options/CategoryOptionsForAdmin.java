@@ -3,11 +3,18 @@ package com.options;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
+
 import Console.ConsoleFeatures.*;
 
 
 
 public class CategoryOptionsForAdmin {
+	
+	final Logger logger=(Logger) LogManager.getLogger(CategoryOptionsForAdmin.class);
 	
 	private List<Option> optionsList=new ArrayList<>();
 	
@@ -30,7 +37,7 @@ public class CategoryOptionsForAdmin {
 		Console.println();
 		int optionNumber=1;
 		for(Option option:optionsList) {
-			Console.println(optionNumber+++"."+option.getOptionName());
+			logger.info("{}.{}",optionNumber++,option.getOptionName());
 		}
 	
 	}
@@ -39,7 +46,7 @@ public class CategoryOptionsForAdmin {
 		try {
 		optionsList.get(optionNumber-1).function();
 		}catch(IndexOutOfBoundsException e) {
-			Console.println("Select from the given numbers");
+			logger.info("Select from the given numbers");
 		}
 	}
 

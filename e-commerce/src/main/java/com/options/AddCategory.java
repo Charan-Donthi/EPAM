@@ -1,11 +1,11 @@
 package com.options;
 
 
-import com.InputOutput.IO;
+
+import com.inputoutput.IO;
 import com.main.Category;
 import com.main.EpamTree;
 
-import Console.ConsoleFeatures.*;
 
 
 
@@ -17,15 +17,16 @@ public class AddCategory extends Option {
 		
 	}
 
-
+	
+	@Override
 	public void function() 
 	{
 		Category category=(Category)EpamTree.getCurrentObject();
 		if(addCategoryUnder(category)) {
-			Console.println("Category Added Successfully under "+category.categoryName);
+			logger.info("Category Added Successfully under {}",category.getCategoryName());
 			
 		}else {
-			Console.println("Unable to add category!..");
+			logger.warn("Unable to add category!..");
 		}
 		
 	}
@@ -36,8 +37,8 @@ public class AddCategory extends Option {
 		String newSubCategoryName=getCategoryNameFromUser();
 		
 		for(Category subcategory:category.getSubCategories()) {
-			if(subcategory.categoryName.equals(newSubCategoryName)) {
-				Console.println("Category already exists");
+			if(subcategory.getCategoryName().equals(newSubCategoryName)) {
+				logger.warn("Category already exists");
 				return false;
 			}
 		}
@@ -47,7 +48,7 @@ public class AddCategory extends Option {
 	
 	
 	private String getCategoryNameFromUser() {
-		Console.print("Enter the category name:::");
+		logger.info("Enter the category name:::");
 		return IO.readStringInput();
 	}
 

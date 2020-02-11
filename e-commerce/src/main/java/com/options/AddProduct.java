@@ -1,7 +1,8 @@
 package com.options;
 
-import Console.ConsoleFeatures.*;
-import com.InputOutput.IO;
+
+
+import com.inputoutput.IO;
 import com.main.Category;
 import com.main.EpamTree;
 import com.main.Product;
@@ -15,15 +16,16 @@ public class AddProduct extends Option {
 		setOptionName(newOptionName);
 	}
 
-
+	
+	@Override
 	public void function() {
 		
 		Category category=(Category)EpamTree.getCurrentObject();
 		
 		if(addProduct(category)) {
-			Console.println("Product Added Successfully under "+category.categoryName);
+			logger.info("Product Added Successfully under {}",category.getCategoryName());
 		}else {
-			Console.println("Unable to add Product");
+			logger.warn("Unable to add Product");
 		}
 		
 	}
@@ -33,8 +35,8 @@ public class AddProduct extends Option {
 		String newProductName=getProductNameFromUser();
 		
 		for(Product product:category.getProducts()) {
-			if(product.productName.equals(newProductName)) {
-				Console.println("Product already exists");
+			if(product.getProductName().equals(newProductName)) {
+				logger.warn("Product already exists");
 				return false;
 			}
 		}
@@ -43,7 +45,7 @@ public class AddProduct extends Option {
 	}
 	
 	private String getProductNameFromUser() {
-		Console.println("Enter the Product name");
+		logger.info("Enter the Product name");
 		return IO.readStringInput();
 	}
 

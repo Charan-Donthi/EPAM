@@ -1,47 +1,52 @@
-package com.appInterface;
+package com.appinterface;
 
 import java.util.InputMismatchException;
 
-import com.InputOutput.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
+import com.inputoutput.*;
 import com.main.EpamTree;
 
 
 
 public class UserInterface  {
 	
-	public String user="user";
+	 protected String user="user";
+	
+	 final Logger logger=(Logger) LogManager.getLogger(UserInterface.class);
 	
 	
 	public void displayMenu() {
 		
 		
-		System.out.println("--------------\n1.Admin\n2.Customer\n3.Exit");
+		logger.info("--------------\n1.Admin\n2.Customer\n3.Exit");
 		EpamTree.displayCurrentBranch(EpamTree.generatePath());
-		System.out.print("Select option:::::");
+		logger.info("Select option:::::");
 		
 		try {
 		switch(IO.readIntInput()) {
 		case 1:
 			UserInterface admin=new AdminInterface("admin");
-			EpamTree.user=admin.user;
+			EpamTree.setUser(admin.user);
 			admin.displayMenu();
-			EpamTree.user=user;
+			EpamTree.setUser(user);
 			break;
 		case 2:
 			UserInterface customer=new CustomerInterface("customer");
-			EpamTree.user=customer.user;
+			EpamTree.setUser(customer.user);
 			customer.displayMenu();
-			EpamTree.user=user;
+			EpamTree.setUser(user);
 			break;
 		case 3:
 			return;
 		default:
-			System.out.println("Select from given Options");	
+			logger.info("Select from given Options");	
 		}}catch(InputMismatchException e) {
-			System.out.println("Invalid input");
+			logger.warn("Invalid input");
 			return;
 		}catch(Exception e) {
-			System.out.println(e.getLocalizedMessage());
+			logger.error(e.getLocalizedMessage());
 			return;
 		}
 		
@@ -51,15 +56,15 @@ public class UserInterface  {
 	
 	
 	public void checkOut(){
-		if(!(EpamTree.branch.size()==1)) {
-		EpamTree.branch.remove(EpamTree.branch.size()-1);	}
+		if(EpamTree.getBranch().size()>=2) {
+		EpamTree.getBranch().remove(EpamTree.getBranch().size()-1);	}
 		else{
-		EpamTree.checkOutStatus=true;
+		EpamTree.setCheckOutStatus(true);
 		}
 	}
 	
 
-	public void Exit() {
+	public void exit() {
 		System.exit(0);
 	}
 	

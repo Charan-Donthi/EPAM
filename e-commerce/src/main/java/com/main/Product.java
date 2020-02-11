@@ -3,27 +3,47 @@ package com.main;
 
 public class Product{
 	
-	public String productName;
-	public double price=0;
-	public int quantity=0;
+	private String productName;
+	private double price=0;
+	private int quantity=0;
 	
+	public String getProductName() {
+		return productName;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
 	public Product(String productName) {
 		this.productName=productName;
-		EpamTree.allProducts.put(productName, this);
+		EpamTree.getAllProducts().put(productName, this);
 	}
 	
 	public Product(String productName,double price,int quantity) {
 		this.productName=productName;
-		this.price=price;
-		this.quantity=quantity;
-		EpamTree.allProducts.put(productName, this);
+		this.setPrice(price);
+		this.setQuantity(quantity);
+		EpamTree.getAllProducts().put(productName, this);
 	}
 	
 
 	public Product(Product product) {
 		this.productName=product.productName;
-		this.price=product.price;
-		this.quantity=1;
+		this.setPrice(product.getPrice());
+		this.setQuantity(1);
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	} 
 	
 

@@ -1,4 +1,4 @@
-package com.InputOutput;
+package com.inputoutput;
 
 import java.util.Scanner;
 
@@ -8,6 +8,10 @@ import java.util.Scanner;
 public class IO{
 	
 	static Scanner input=new Scanner(System.in);
+	
+	private IO() {
+		
+	}
 	
 	public static int readIntInput() {
 		int n=input.nextInt();
@@ -23,8 +27,7 @@ public class IO{
 	
 	public static Double readDoubleInput() {
 		
-		double n=input.nextDouble();
-		return n;
+		return input.nextDouble();
 		
 	}
 

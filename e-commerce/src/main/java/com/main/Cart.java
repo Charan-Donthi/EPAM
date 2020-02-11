@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Cart {
 	
-	private Set<Product> productsInCart=new LinkedHashSet<Product>();
+	private Set<Product> productsInCart=new LinkedHashSet<>();
 	private double totalPrice=0;
 	
 	

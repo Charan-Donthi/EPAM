@@ -1,6 +1,7 @@
 package com.options;
 
-import Console.ConsoleFeatures.*;
+
+
 import com.main.Category;
 import com.main.EpamTree;
 
@@ -12,17 +13,18 @@ public class ShowCategories extends Option
 		setOptionName(newOptionName);
 	}
 	
+	@Override
 	public void function() 
 	{
 		Category category=(Category)EpamTree.getCurrentObject();
 		if(category.getSubCategories().isEmpty()) 
 		{
-			Console.println("No categories under "+ category.categoryName); 
+			logger.info("No categories under {}", category.getCategoryName()); 
 			return;
 		}
 		for(Category subCategory:category.getSubCategories()) 
 		{
-			Console.println(subCategory.categoryName);
+			logger.info(subCategory.getCategoryName());
 		}
 	}
 	

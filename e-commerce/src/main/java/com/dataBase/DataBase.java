@@ -1,4 +1,4 @@
-package com.dataBase;
+package com.database;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -9,10 +9,11 @@ import com.main.Product;
 
 public class DataBase {
 	
-		public Category epam=new Category("Epam");
+	Category epam=new Category("Epam");
 		
+
 			Category electronics=new Category("Electronics");
-				public Category mobiles=new Category("Mobiles");
+			    Category mobiles=new Category("Mobiles");
 				Category computers=new Category("Computers");
 				Category homeAppliances=new Category("Home Appliances");
 			
@@ -93,6 +94,12 @@ public class DataBase {
 		
 
 				}
+				
+				public Category getEpam() {
+					return epam;
+				}
+				
+				
 				
 
 }

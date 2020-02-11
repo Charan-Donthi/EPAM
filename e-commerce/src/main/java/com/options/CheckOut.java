@@ -1,5 +1,6 @@
 package com.options;
 
+
 import com.main.EpamTree;
 
 public class CheckOut extends Option{
@@ -18,11 +19,12 @@ public class CheckOut extends Option{
 		return instance;
 	}
 	
+	@Override
 	public void function() {
-		if(EpamTree.branch.size()!=1) {
-			EpamTree.branch.remove(EpamTree.branch.size()-1);	}
+		if(EpamTree.getBranch().size()!=1) {
+			EpamTree.getBranch().remove(EpamTree.getBranch().size()-1);	}
 			else{
-			EpamTree.checkOutStatus=true;
+			EpamTree.setCheckOutStatus(true);
 			}
 	}
 }

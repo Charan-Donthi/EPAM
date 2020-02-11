@@ -16,6 +16,7 @@ public class Exit extends Option{
 		return instance;
 	}
 	
+	@Override
 	public void function() {
 		System.exit(0);
 	}
