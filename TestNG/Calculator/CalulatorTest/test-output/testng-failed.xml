@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="calculator.CalculatorTest.CalculatorTesting">
+        <methods>
+          <include name="testCtg" invocation-numbers="0 1 2 3 4 5"/>
+          <include name="testCos" invocation-numbers="0 1 2 3 4 5"/>
+          <include name="testDivForDouble" invocation-numbers="0"/>
+          <include name="testMulForLong"/>
+          <include name="testDivForLong" invocation-numbers="0"/>
+          <include name="testtg" invocation-numbers="0 1 2 3 4 5"/>
+          <include name="testSumForDouble" invocation-numbers="5"/>
+          <include name="objectCreation"/>
+          <include name="testMulForDouble" invocation-numbers="5"/>
+          <include name="testSqrtForNegativeValues"/>
+        </methods>
+      </class> <!-- calculator.CalculatorTest.CalculatorTesting -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

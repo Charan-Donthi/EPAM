@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [RestAssuredSuite]" parallel="methods">
+  <test thread-count="5" name="RestAssuredTest(failed)" parallel="methods">
+    <classes>
+      <class name="restAssured.RestAssured.TestingRestServices">
+        <methods>
+          <include name="verifyHttpResponseHeader"/>
+          <include name="VerifyPresenseOfHeadersInHttpResponse" invocation-numbers="0"/>
+          <include name="verifyHttpResponseBody" invocation-numbers="0"/>
+          <include name="verifyResponseStatusCodeForPost" invocation-numbers="0 1"/>
+          <include name="BuildingSpecifications"/>
+          <include name="verifyHttpStatusCode"/>
+          <include name="verifyHttpResponseBodyForPost"/>
+        </methods>
+      </class> <!-- restAssured.RestAssured.TestingRestServices -->
+    </classes>
+  </test> <!-- RestAssuredTest(failed) -->
+</suite> <!-- Failed suite [RestAssuredSuite] -->
