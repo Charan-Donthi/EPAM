@@ -1,19 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>calculator</groupId>
-  <artifactId>CalculatorTest</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>calculatorTest</artifactId>
   <packaging>jar</packaging>
-
-  <name>CalulatorTest</name>
+  <version>1.0</version>
+  <name>calculatorTest</name>
   <url>http://maven.apache.org</url>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -22,20 +16,21 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-            <groupId>com.epam.tat.module4</groupId>
-            <artifactId>calculator</artifactId>
-            <scope>system</scope>
-            <version>1.0</version>
-            <systemPath>C:\Users\Charan_Donthi\Rd_training\files\calculator-1.0.jar</systemPath>
-	</dependency>
-	
-	<dependency>
+    	<dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.0.0</version>
             <scope>test</scope>
         </dependency>
+      
     
+        
+      <dependency>
+            <groupId>com.epam.tat.module4</groupId>
+            <artifactId>calculator</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>C:\Users\Charan_Donthi\Rd_training\files\calculator-1.0.jar</systemPath>
+</dependency>
   </dependencies>
 </project>

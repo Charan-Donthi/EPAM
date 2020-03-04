@@ -1,8 +1,7 @@
-package calculator.CalculatorTest;
+package calculator.calculatorTest;
 
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 
 public class CalculatorListener implements ITestListener{
 	
@@ -28,7 +27,3 @@ public class CalculatorListener implements ITestListener{
 
 
 }
-
-
-
-

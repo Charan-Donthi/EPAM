@@ -1,30 +1,33 @@
-package Calculator.calulatorTesting;
+package calculator.calculatorTest;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.epam.tat.module4.Calculator;
 
-public class TestCalculatorTest {
+@Listeners(calculator.calculatorTest.CalculatorListener.class)
+public class CalculatorTest {
+	
+
 	
 	Calculator calculator;
 
 	
 	
-	@BeforeClass
+	@BeforeClass(groups= {"Arthimetic","Trignometry"})
 	public void objectCreation() {
 		calculator=new Calculator();
 	}
 	
 		
-	@Test(dataProvider="dataProviderForTestingSumForLong",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingSumForLong")
 	public void testSumForLong(long a,long b,long expected)
 	{
-		
 		assertEquals(calculator.sum(a, b),expected);
 	}
 	
@@ -42,7 +45,7 @@ public class TestCalculatorTest {
 	}
 	
 	
-	@Test(dataProvider="dataProviderForTestingSumForDouble",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingSumForDouble",groups= "Arthimetic")
 	public void testSumForDouble(double a,double b,double expected)
 	{
 		assertEquals(calculator.sum(a, b),expected);
@@ -69,7 +72,7 @@ public class TestCalculatorTest {
 	
 	
 	
-	@Test(dataProvider="dataProviderForTestingSubForLong",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingSubForLong",groups= "Arthimetic")
 	public void testSubForLong(long a,long b,long expected)
 	{
 		
@@ -90,7 +93,7 @@ public class TestCalculatorTest {
 	}
 	
 	
-	@Test(dataProvider="dataProviderForTestingSubForDouble",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingSubForDouble",groups= "Arthimetic")
 	public void testSubForDouble(double a,double b,double expected)
 	{
 		assertEquals(calculator.sub(a, b),expected);
@@ -136,7 +139,7 @@ public class TestCalculatorTest {
 	}
 	
 
-	@Test(dataProvider="dataProviderForTestingMulForDouble",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingMulForDouble",groups= "Arthimetic")
 	public void testMulForDouble(double a,double b,double expected)
 	{
 		assertEquals(calculator.mult(a, b),expected);
@@ -161,7 +164,7 @@ public class TestCalculatorTest {
 	
 	
 	
-	@Test(dataProvider="dataProviderForTestingDivForLong",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingDivForLong",groups= "Arthimetic")
 	public void testDivForLong(long a,long b,long expected)
 	{
 		
@@ -181,7 +184,7 @@ public class TestCalculatorTest {
 	}
 	
 	
-	@Test(dataProvider="dataProviderForTestingDivForDouble",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingDivForDouble",groups= "Arthimetic")
 	public void testDivForDouble(double a,double b,double expected)
 	{
 		assertEquals(calculator.div(a, b),expected);
@@ -207,7 +210,7 @@ public class TestCalculatorTest {
 	
 	
 	
-	@Test(dataProvider="dataProviderForTestingPow",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingPow",groups= "Arthimetic")
 	public void testPow(double a,double b,double expected)
 	{
 		assertEquals(calculator.pow(a, b),expected);
@@ -271,7 +274,7 @@ public class TestCalculatorTest {
 	}
 	
 	
-	@Test(dataProvider="dataProviderForTestingSqrt",groups= {"Arthimetic"})
+	@Test(dataProvider="dataProviderForTestingSqrt",groups= "Arthimetic")
 	public void testSqrt(long val,double expected)
 	{
 		assertEquals(calculator.sqrt(val),expected);
@@ -291,7 +294,7 @@ public class TestCalculatorTest {
 	
 	
 	
-	@Test(dataProvider="dataProviderForTestingCos",groups= {"Trignometry"})
+	@Test(dataProvider="dataProviderForTestingCos",groups= "Trignometry")
 	public void testCos(double val,double expected)
 	{
 		assertEquals(calculator.cos(val),expected);
@@ -311,7 +314,7 @@ public class TestCalculatorTest {
 	}
 	
 	
-	@Test(dataProvider="dataProviderForTestingSin",groups= {"Trignometry"})
+	@Test(dataProvider="dataProviderForTestingSin",groups= "Trignometry")
 	public void testSin(double val,double expected)
 	{
 		assertEquals(calculator.sin(val),expected);
@@ -332,7 +335,7 @@ public class TestCalculatorTest {
 	
 	
 	
-	@Test(dataProvider="dataProviderForTestingCtg",groups= {"Trignometry"})
+	@Test(dataProvider="dataProviderForTestingCtg",groups= "Trignometry")
 	public void testCtg(double val,double expected)
 	{
 		assertEquals(calculator.ctg(val),expected);
@@ -352,7 +355,7 @@ public class TestCalculatorTest {
 	}
 	
 	
-	@Test(dataProvider="dataProviderForTestingtg",groups= {"Trignometry"})
+	@Test(dataProvider="dataProviderForTestingtg",groups= "Trignometry")
 	public void testtg(double val,double expected)
 	{
 		assertEquals(calculator.tg(val),expected);
@@ -373,3 +376,4 @@ public class TestCalculatorTest {
 	
 	
 }
+
